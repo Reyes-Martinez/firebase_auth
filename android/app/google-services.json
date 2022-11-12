@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "322472945251",
+    "project_id": "parctica-auth",
+    "storage_bucket": "parctica-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322472945251:android:51fcb185ccca75ca297a56",
+        "android_client_info": {
+          "package_name": "com.example.firebase_autentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322472945251-g5r4groqh97cpnsiune3dkjnf0t89o49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase_autentication",
+            "certificate_hash": "b7585ecbc5269a93f89f0a2c8b13e563a7b849c9"
+          }
+        },
+        {
+          "client_id": "322472945251-6o9jl46jd07dln6fhto0oq7i5u6mi4rk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCClWeZEmwK9TFe2a3QOVcCC94BQAyxCwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322472945251-6o9jl46jd07dln6fhto0oq7i5u6mi4rk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
