@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:firebase_autentication/decorations/input_decorations.dart';
 import 'package:firebase_autentication/firebase/user_services.dart';
 import 'package:firebase_autentication/widgets/widgets.dart';
@@ -12,31 +13,26 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
+    return ProfileBackground(
+        child: SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          const _Image(),
+          const SizedBox(
+            height: 20,
+          ),
+          CardContainer(
+            child: Column(children: const [
+              SizedBox(height: 10),
+              _ProfileFrom(),
+            ]),
+          ),
+        ],
       ),
-      body: ProfileBackground(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const _Image(),
-            const SizedBox(
-              height: 20,
-            ),
-            CardContainer(
-              child: Column(children: const [
-                SizedBox(height: 10),
-                _ProfileFrom(),
-              ]),
-            ),
-          ],
-        ),
-      )),
-    );
+    ));
   }
 }
 
@@ -179,9 +175,14 @@ class _ProfileFrom extends StatelessWidget {
                     }
                     profile.isLoading = true;
                     profile.updateUser();
+                    ElegantNotification.success(
+                            title: const Text("Actualizado"),
+                            description: const Text(
+                                "Tu información se actualizo correctamente"))
+                        .show(context);
                     await Future.delayed(const Duration(seconds: 2));
+                    btnController.reset();
                     profile.isLoading = false;
-                    Navigator.pop(context);
                   },
             child: const Text('Save'),
           ),

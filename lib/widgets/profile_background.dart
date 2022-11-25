@@ -12,7 +12,7 @@ class ProfileBackground extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: Stack(
-        children: [const _Background(), child],
+        children: [child],
       ),
     );
   }

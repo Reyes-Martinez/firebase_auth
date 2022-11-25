@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:firebase_autentication/models/github_login_response.dart';
 import 'package:firebase_autentication/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:http/http.dart' as http;
-
-import '../models/github_login_request.dart';
 
 class AuthServices extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -130,25 +127,27 @@ class AuthServices extends ChangeNotifier {
     return userDAO;
   }
 
-  // Future signInWithGithub(String code) async {
-  //   final response = await http.post(
-  //     Uri.parse('https://github.com/login/oauth/access_token'),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Accept": "application/json"
-  //     },
-  //     body: jsonEncode(GitHubLoginRequest(
-  //       clientId: SecretKey.GITHUB_CLIENT_ID,
-  //       clientSecret: SecretKey.GITHUB_CLIENT_SECRET,
-  //       code: code,
-  //     )),
-  //   );
-  //   GitHubLoginResponse loginResponse =
-  //       GitHubLoginResponse.fromJson(json.decode(response.body));
-  //   final AuthCredential credential =
-  //       GithubAuthProvider.credential(loginResponse.accessToken);
-  //   user = (await _auth.signInWithCredential(credential)).user;
-  // }
+  Future<UserDAO> singInWithGitHub() async {
+    UserDAO userDAO;
+    var githubProvider = GithubAuthProvider();
+    githubProvider
+        .addScope('https://parctica-auth.firebaseapp.com/__/auth/handler');
+    githubProvider.setCustomParameters({
+      'allow_signup': 'true',
+    });
+    try {
+      final UserCredential userCredential =
+          await _auth.signInWithProvider(githubProvider);
+      user = userCredential.user;
+      provider = 'emailandpassword';
+      userDAO = await userExists();
+      notifyListeners();
+    } catch (e) {
+      createUser();
+      userDAO = await userExists();
+    }
+    return userDAO;
+  }
 
   Future<void> signOut() async {
     await _auth.signOut();
@@ -163,5 +162,17 @@ class AuthServices extends ChangeNotifier {
         _auth.signOut();
         break;
     }
+  }
+
+  Future<UserDAO> getUser(String uid) async {
+    final documentReference = _firestore.collection('users');
+    final ref = await documentReference
+        .where("id", isEqualTo: uid)
+        .withConverter(
+            fromFirestore: UserDAO.fromFirestore,
+            toFirestore: (UserDAO user, _) => user.toFirestore());
+    final docSnamp = await ref.get();
+    final userDAO = docSnamp.docs.first.data();
+    return userDAO;
   }
 }

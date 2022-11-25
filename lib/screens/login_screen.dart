@@ -2,13 +2,12 @@ import 'dart:async';
 
 import 'package:firebase_autentication/firebase/auth_services.dart';
 import 'package:firebase_autentication/models/user.dart';
+import 'package:firebase_autentication/shared/preferences.dart';
 import 'package:firebase_autentication/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
-import 'package:uni_links/uni_links.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../decorations/input_decorations.dart';
 import '../firebase/user_services.dart';
@@ -36,34 +35,56 @@ class LoginScreen extends StatelessWidget {
           height: 10,
         ),
         const Text(
+          'Crear cuenta',
+          style: TextStyle(fontSize: 20, color: Colors.brown),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 25),
+            SocialLoginButton(
+              borderRadius: 50,
+              mode: SocialLoginButtonMode.single,
+              buttonType: SocialLoginButtonType.generalLogin,
+              text: 'Sing Up',
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  '/register',
+                );
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const Text(
           'O puede iniciar sesion con:',
           style: TextStyle(fontSize: 20, color: Colors.brown),
         ),
+        const SizedBox(
+          height: 10,
+        ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 25),
               SocialLoginButton(
-                buttonType: SocialLoginButtonType.generalLogin,
-                text: 'Sing Up',
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/register',
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SocialLoginButton(
-                borderRadius: 10,
+                borderRadius: 50,
+                mode: SocialLoginButtonMode.single,
                 buttonType: SocialLoginButtonType.facebook,
                 onPressed: () async {
                   UserDAO us = await authProvider.signInWithFacebook();
                   userServices.loadUser(us);
-                  Navigator.pushReplacementNamed(context, '/home');
+                  Navigator.pushReplacementNamed(context, '/onboarding');
                 },
               ),
               const SizedBox(
@@ -74,12 +95,13 @@ class LoginScreen extends StatelessWidget {
                 height: 10,
               ),
               SocialLoginButton(
-                borderRadius: 10,
+                mode: SocialLoginButtonMode.single,
+                borderRadius: 50,
                 buttonType: SocialLoginButtonType.google,
                 onPressed: () async {
                   UserDAO us = (await authProvider.signInWithGoogle())!;
                   userServices.loadUser(us);
-                  Navigator.pushReplacementNamed(context, '/home');
+                  Navigator.pushReplacementNamed(context, '/onboarding');
                 },
               ),
             ],
@@ -163,7 +185,7 @@ class _LoginForm extends StatelessWidget {
                     if (us != null) {
                       loginForm.isLoading = false;
                       userServices.loadUser(us);
-                      Navigator.pushReplacementNamed(context, '/home');
+                      Navigator.pushReplacementNamed(context, '/onboarding');
                     } else {
                       btnController.error();
                       await Future.delayed(const Duration(seconds: 2));
@@ -173,6 +195,17 @@ class _LoginForm extends StatelessWidget {
                   },
             child: const Text('Ingresar'),
           ),
+          const Divider(color: Color.fromARGB(255, 185, 0, 121)),
+          SwitchListTile.adaptive(
+              value: loginForm.recordar,
+              activeColor: Color.fromARGB(255, 255, 111, 231),
+              onChanged: (value) {
+                loginForm.recordar = value;
+              },
+              title: const Text(
+                'Recordar credenciales',
+                style: TextStyle(color: Colors.black, fontSize: 12),
+              )),
           const SizedBox(
             height: 5,
           ),
