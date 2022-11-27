@@ -12,8 +12,8 @@ class ItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120,
-      height: 190,
+      width: 150,
+      height: 180,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColorLight,
         borderRadius: BorderRadius.circular(20),
@@ -21,19 +21,16 @@ class ItemComponent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
+          Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
               child: Container(
-                width: 100,
+                width: double.infinity,
                 height: 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(
-                      img,
-                    ),
-                  ),
+                child: FadeInImage(
+                  placeholder: AssetImage('assets/loading.gif'),
+                  image: NetworkImage(img),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

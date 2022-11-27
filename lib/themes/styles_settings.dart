@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 ThemeData temaDia() {
   final ThemeData base = ThemeData.light().copyWith(
-      scaffoldBackgroundColor: Colors.grey, primaryColor: Colors.brown);
+      scaffoldBackgroundColor: Colors.grey,
+      primaryColor: Colors.brown,
+      primaryColorLight: Color.fromARGB(255, 71, 121, 110));
 
   return base;
 }

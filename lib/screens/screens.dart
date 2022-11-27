@@ -1,3 +1,5 @@
+export 'package:firebase_autentication/screens/alimento_detail_scrren.dart';
+
 export 'package:firebase_autentication/screens/profile_screen.dart';
 export 'package:firebase_autentication/screens/register_screen.dart';
 export 'package:firebase_autentication/screens/dashboard.dart';

@@ -2,11 +2,14 @@ import 'dart:io';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:firebase_autentication/decorations/input_decorations.dart';
 import 'package:firebase_autentication/firebase/user_services.dart';
+import 'package:firebase_autentication/shared/preferences.dart';
 import 'package:firebase_autentication/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+
+import '../firebase/auth_services.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -29,6 +32,9 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 10),
               _ProfileFrom(),
             ]),
+          ),
+          const SizedBox(
+            height: 70,
           ),
         ],
       ),
@@ -107,6 +113,8 @@ class _ProfileFrom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthServices>(context);
+
     final profile = Provider.of<UserServices>(context);
     final RoundedLoadingButtonController btnController =
         RoundedLoadingButtonController();
@@ -186,6 +194,14 @@ class _ProfileFrom extends StatelessWidget {
                   },
             child: const Text('Save'),
           ),
+          IconButton(
+              onPressed: () async {
+                await authProvider.signOut().then((value) {
+                  Preference.user = "";
+                  Navigator.pushReplacementNamed(context, '/login');
+                });
+              },
+              icon: const Icon(Icons.logout))
         ],
       ),
     );

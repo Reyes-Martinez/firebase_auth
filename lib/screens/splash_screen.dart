@@ -21,19 +21,16 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Preference.user.isNotEmpty) {
       loadUser(context);
-      print('user: ${Preference.user}');
     }
 
     return SplashScreenView(
-      navigateRoute:
-          //TODO cargar la pantalla de login si no hay token
-          (Preference.user.isNotEmpty)
-              ? const DashBorad()
-              : const LoginScreen(),
+      navigateRoute: (Preference.user.isNotEmpty)
+          ? const DashBorad()
+          : const LoginScreen(),
       duration: 3000,
       imageSize: 130,
-      imageSrc: "assets/logo.png",
-      text: "Splash Screen",
+      imageSrc: "assets/Logo_coffee_linx.gif",
+      text: "Coffee Linx",
       textType: TextType.ScaleAnimatedText,
       textStyle: const TextStyle(fontSize: 30.0, color: Colors.black),
       backgroundColor: Colors.white,

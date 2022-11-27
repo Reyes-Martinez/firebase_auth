@@ -1,4 +1,5 @@
 import 'package:firebase_autentication/firebase/auth_services.dart';
+import 'package:firebase_autentication/firebase/compras_services.dart';
 import 'package:firebase_autentication/firebase/user_services.dart';
 import 'package:firebase_autentication/provider/alimentos_provider.dart';
 import 'package:firebase_autentication/provider/login_form_provider.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ChangeNotifierProvider(create: (_) => UserServices()),
       ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ChangeNotifierProvider(create: (_) => ComprasProvider()),
       ChangeNotifierProvider(
         create: (_) => AlimentosProvider(),
       )
@@ -58,6 +60,7 @@ class _APP extends StatelessWidget {
         '/profile': (_) => const ProfileScreen(),
         '/splash': (_) => const SplashScreen(),
         '/onboarding': (_) => const OnboardingScreen(),
+        '/details': (_) => const AlimentoDetailScreen(),
       },
       initialRoute: '/splash',
     );

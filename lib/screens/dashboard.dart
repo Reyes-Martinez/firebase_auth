@@ -1,5 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_autentication/firebase/compras_services.dart';
 import 'package:firebase_autentication/firebase/user_services.dart';
+import 'package:firebase_autentication/provider/alimentos_provider.dart';
 import 'package:firebase_autentication/provider/login_form_provider.dart';
 import 'package:firebase_autentication/screens/home_page.dart';
 import 'package:firebase_autentication/screens/profile_screen.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../firebase/auth_services.dart';
+import 'compras_screen.dart';
 
 class DashBorad extends StatefulWidget {
   const DashBorad({Key? key}) : super(key: key);
@@ -21,19 +24,15 @@ class _DashBoradState extends State<DashBorad> {
   Widget _page = HomeScreen();
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
-  singOut(authProvider) async {
-    await authProvider.signOut().then((value) {
-      Preference.user = "";
-      Navigator.pushReplacementNamed(context, '/login');
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // final User user = ModalRoute.of(context)!.settings.arguments as User;
     final loginForm = Provider.of<LoginFormProvider>(context);
-    final authProvider = Provider.of<AuthServices>(context);
     final userProvider = Provider.of<UserServices>(context);
+    final compraProvider = Provider.of<ComprasProvider>(context);
+    compraProvider.setId(userProvider.userDAO.id!);
+    compraProvider.getCompras();
+
     if (loginForm.recordar == true) {
       Preference.user = userProvider.userDAO.id!;
     }
@@ -50,7 +49,7 @@ class _DashBoradState extends State<DashBorad> {
             Icon(Icons.shopping_bag_outlined, size: 30, color: (Colors.amber)),
             Icon(Icons.palette, size: 30, color: (Colors.amber)),
             Icon(Icons.perm_identity, size: 30, color: (Colors.amber)),
-            Icon(Icons.output, size: 30, color: (Colors.amber)),
+            // Icon(Icons.output, size: 30, color: (Colors.amber)),
           ],
           color: Colors.brown,
           buttonBackgroundColor: Colors.white,
@@ -64,7 +63,7 @@ class _DashBoradState extends State<DashBorad> {
                   _page = HomeScreen();
                   break;
                 case 1:
-                  _page = Center(child: Text('List'));
+                  _page = ComprasScreen();
                   break;
                 case 2:
                   _page = ThemeScreen();
@@ -72,9 +71,9 @@ class _DashBoradState extends State<DashBorad> {
                 case 3:
                   _page = ProfileScreen();
                   break;
-                case 4:
-                  singOut(authProvider);
-                  break;
+                // case 4:
+                //   singOut(authProvider);
+                //   break;
               }
             });
           },

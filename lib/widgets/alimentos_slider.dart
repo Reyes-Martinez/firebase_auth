@@ -37,7 +37,7 @@ class _AlimentosSliderState extends State<AlimentosSlider> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 400,
+      height: 220,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -82,14 +82,15 @@ class _AlimentoPoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 230,
+      width: 180,
       height: 370,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
           GestureDetector(
-            onTap: () {},
-            // Navigator.pushNamed(context, "/details", arguments: alimento),
+            onTap: () {
+              Navigator.pushNamed(context, "/details", arguments: alimento);
+            },
             child: Hero(
               tag: alimento.id,
               child: ItemComponent(

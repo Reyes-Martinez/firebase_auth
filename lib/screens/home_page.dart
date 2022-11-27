@@ -1,4 +1,5 @@
 import 'package:firebase_autentication/provider/alimentos_provider.dart';
+import 'package:firebase_autentication/widgets/alimentos_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "CoffeLinx",
+                      "Coffee Linx",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.brown,
@@ -42,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                           : const NetworkImage(
                               'https://cdn-icons-png.flaticon.com/512/147/147144.png'),
                       backgroundColor: Colors.white,
-                      radius: 50.0,
+                      radius: 35.0,
                     ),
                   ],
                 ),
@@ -61,11 +62,20 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Row(),
+                    Text(''),
+                    AlimentosSlider(
+                      alimentos: alimentosProvider.comidas,
+                      onNextPage: () {},
+                      title: 'Alimentos',
+                    ),
                     SizedBox(
                       height: 25.0,
                     ),
-                    Row(),
+                    AlimentosSlider(
+                      alimentos: alimentosProvider.bebidas,
+                      onNextPage: () {},
+                      title: 'Bebidas',
+                    ),
                     SizedBox(
                       height: 25.0,
                     ),
