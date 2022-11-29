@@ -42,7 +42,7 @@ class AlimentoDetailScreen extends StatelessWidget {
               height: 20,
             ),
             RoundedLoadingButton(
-              color: Colors.blue,
+              color: Color.fromARGB(255, 168, 89, 36),
               borderRadius: 10,
               controller: btnController,
               errorColor: Colors.red,
@@ -118,7 +118,7 @@ class _Name extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -130,6 +130,7 @@ class _Name extends StatelessWidget {
                 fontSize: 20.0,
               ),
             ),
+            const Divider(),
             Text(
               descripcion,
               style: const TextStyle(

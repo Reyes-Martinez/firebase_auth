@@ -22,11 +22,11 @@ class ThemeProvider with ChangeNotifier {
         case 'temaNoche':
           _themeData = temaNoche();
           break;
-        case 'temaAzul':
-          _themeData = temaAzul();
+        case 'temaCapucchino':
+          _themeData = temaCapucchino();
           break;
-        case 'temaVerde':
-          _themeData = temaVerde();
+        case 'temaExpresso':
+          _themeData = temaExpresso();
           break;
         default:
           _themeData = temaDia();

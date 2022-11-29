@@ -37,7 +37,7 @@ class _AlimentosSliderState extends State<AlimentosSlider> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 220,
+      height: 260,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -54,9 +54,7 @@ class _AlimentosSliderState extends State<AlimentosSlider> {
                 ),
               ),
             ),
-          const SizedBox(
-            height: 5,
-          ),
+          const Divider(),
           Expanded(
             child: ListView.builder(
               controller: scrolCintroller,
@@ -82,8 +80,8 @@ class _AlimentoPoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
-      height: 370,
+      width: 220,
+      height: 310,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [

@@ -28,11 +28,11 @@ class SplashScreen extends StatelessWidget {
           ? const DashBorad()
           : const LoginScreen(),
       duration: 3000,
-      imageSize: 130,
+      imageSize: 330,
       imageSrc: "assets/Logo_coffee_linx.gif",
-      text: "Coffee Linx",
-      textType: TextType.ScaleAnimatedText,
-      textStyle: const TextStyle(fontSize: 30.0, color: Colors.black),
+      //text: "Coffee Linx",
+      //textType: TextType.ScaleAnimatedText,
+      //textStyle: const TextStyle(fontSize: 30.0, color: Colors.black),
       backgroundColor: Colors.white,
     );
   }

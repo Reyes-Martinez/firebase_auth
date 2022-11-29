@@ -33,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               controller: controller,
               onPageChanged: (index) {
                 setState(() {
-                  isLastPage = index == 3;
+                  isLastPage = index == 2;
                 });
               },
               children: [
@@ -43,30 +43,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          'Welcome to the aplication',
+                          'Bienvenido a Coffee Linx',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 14),
+                        const Divider(),
                         Image.asset(
-                          'assets/logo.png',
+                          'assets/CoffeeCup.png',
                           fit: BoxFit.cover,
-                          width: 150,
+                          width: 250,
                         ),
-                        const SizedBox(height: 14),
+                        const Divider(),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 30),
                           child: const Text(
-                            'Ipsum nostrud veniam ullamco est cupidatat ullamco ut est. Quis id dolor ea quis culpa magna in anim est commodo nulla esse. Anim minim laborum exercitation dolore aliqua pariatur commodo et Lorem. Quis voluptate irure elit cupidatat Lorem laborum incididunt do velit id. Voluptate duis id est aliqua duis laboris incididunt occaecat amet anim aliquip do. Pariatur voluptate reprehenderit exercitation aute nisi enim non.',
+                            'Hola querido usuari@, esta aplicación “Coffee Linx” fue desarrollada por 2 alumnos del TecNM en Celaya (Martínez Arriaga Reyes Manuel y Ponce Ramírez Emmanuel) para que puedas pedir tu comida y/o bebida favorita en la cafetería y solo tengas que acercarte a la barra para recoger tus alimentos sin necesidad de que hagas fila, solo pides y nosotros te avisamos cuando esté listo.',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
                           ),
                         ),
-                        const SizedBox(height: 40),
-                        Image.asset(
-                          'assets/logo.png',
-                          fit: BoxFit.cover,
-                          width: 60,
-                        ),
-                        const Text('Tap on next button')
                       ],
                     )),
                 Container(
@@ -75,15 +71,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          'Selected theme',
+                          'Selecciona el tema que prefieras',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 14),
+                        const Divider(),
                         Image.asset(
-                          'assets/logo.png',
+                          'assets/coffee-cup.png',
                           fit: BoxFit.cover,
-                          width: 150,
+                          width: 250,
                         ),
                         const SizedBox(height: 14),
                         Column(
@@ -94,9 +91,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 Preference.theme = 'temaDia';
                                 tema.setthemeData(temaDia());
                               },
-                              icon: const Icon(Icons.sunny, color: Colors.grey),
-                              label: const Text('Tema de Día',
-                                  style: TextStyle(color: Colors.grey)),
+                              icon: const Icon(Icons.sunny,
+                                  color: Colors.grey, size: 50),
+                              label: const Text('Tema Claro',
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 22)),
                             ),
                             TextButton.icon(
                               onPressed: () {
@@ -105,44 +104,40 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 tema.setthemeData(temaNoche());
                               },
                               icon: const Icon(Icons.mode_night_outlined,
-                                  color: Colors.black),
-                              label: const Text('Tema de Noche',
-                                  style: TextStyle(color: Colors.black)),
+                                  color: Colors.black, size: 50),
+                              label: const Text('Tema Oscuro',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 22)),
                             ),
                             TextButton.icon(
                               onPressed: () {
-                                Preference.theme = 'temaAzul';
+                                Preference.theme = 'temaCapucchino';
 
-                                tema.setthemeData(temaAzul());
+                                tema.setthemeData(temaCapucchino());
                               },
-                              icon: const Icon(Icons.water, color: Colors.blue),
-                              label: Text('Tema Azul',
-                                  style:
-                                      TextStyle(color: Colors.blue.shade400)),
+                              icon: const Icon(Icons.coffee,
+                                  color: Color.fromARGB(255, 239, 182, 135),
+                                  size: 50),
+                              label: const Text('Tema Capucchino',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 216, 184, 147),
+                                      fontSize: 22)),
                             ),
                             TextButton.icon(
                               onPressed: () {
-                                Preference.theme = 'temaVerde';
-                                tema.setthemeData(temaVerde());
+                                Preference.theme = 'temaExpresso';
+                                tema.setthemeData(temaExpresso());
                               },
-                              icon: const Icon(
-                                Icons.wb_twilight_sharp,
-                                color: Colors.green,
-                              ),
+                              icon: const Icon(Icons.coffee_maker,
+                                  color: Colors.brown, size: 50),
                               label: Text(
-                                'Tema Verde',
-                                style: TextStyle(color: Colors.green.shade400),
+                                'Tema Expresso',
+                                style: TextStyle(
+                                    color: Colors.brown.shade400, fontSize: 22),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 40),
-                        Image.asset(
-                          'assets/logo.png',
-                          fit: BoxFit.cover,
-                          width: 60,
-                        ),
-                        const Text('Tap on next button')
                       ],
                     )),
                 Container(
@@ -151,42 +146,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          'Etid your profile',
+                          'Te deseamos la mejor experiencia tanto en la aplicación como en la cafetería, siempre eres bienvenid@ Lince.',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 14),
+                        const Divider(),
                         Image.asset(
-                          'assets/logo.png',
+                          'assets/Tecnm.png',
                           fit: BoxFit.cover,
-                          width: 240,
+                          width: 260,
                         ),
-                        const SizedBox(height: 14),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
-                          child: const Text(
-                              'You can edit your profile after you are lgin'),
-                        ),
-                        const SizedBox(height: 40),
-                      ],
-                    )),
-                Container(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Movies',
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 14),
-                        Image.asset(
-                          'assets/logo.png',
-                          fit: BoxFit.cover,
-                          width: 240,
-                        ),
-                        const SizedBox(height: 40),
                       ],
                     )),
               ]),
@@ -205,7 +175,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0)),
                 ),
-                child: const Text('Get Satarted'),
+                child: const Text('COMENZAR'),
               )
             : Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -216,17 +186,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: [
                     TextButton(
                       child: const Text(
-                        'SKIP',
+                        'SALTAR',
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-                        controller.jumpToPage(3);
+                        controller.jumpToPage(2);
                       },
                     ),
                     Center(
                       child: SmoothPageIndicator(
                         controller: controller,
-                        count: 4,
+                        count: 3,
                         effect: const WormEffect(
                             spacing: 16,
                             dotColor: Colors.grey,
@@ -237,7 +207,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     TextButton(
-                      child: const Text('NEXT',
+                      child: const Text('SIGUIENTE',
                           style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         controller.nextPage(

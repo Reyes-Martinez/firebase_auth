@@ -12,8 +12,8 @@ class ItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
-      height: 180,
+      width: 270,
+      height: 200,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColorLight,
         borderRadius: BorderRadius.circular(20),

@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 20,
+            height: 30,
           ),
           const _Image(),
           const SizedBox(
@@ -59,7 +59,7 @@ class _Image extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
               child: profile.userDAO.image != ""
                   ? Image(
-                      height: 200,
+                      height: 220,
                       width: 220,
                       fit: BoxFit.cover,
                       image: NetworkImage(profile.userDAO.image!),
@@ -71,6 +71,9 @@ class _Image extends StatelessWidget {
                       image: NetworkImage(
                           'https://cdn-icons-png.flaticon.com/512/147/147144.png'),
                     )),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         ImageControls(
           child: Row(
@@ -87,7 +90,7 @@ class _Image extends StatelessWidget {
                     }
                   },
                   icon: const Icon(Icons.camera,
-                      color: Color.fromARGB(255, 12, 51, 228))),
+                      color: Color.fromARGB(255, 124, 79, 47))),
               IconButton(
                   onPressed: () async {
                     final XFile? pickedFile = await picker.pickImage(
@@ -99,7 +102,7 @@ class _Image extends StatelessWidget {
                     }
                   },
                   icon: const Icon(Icons.image_search,
-                      color: Color.fromARGB(255, 12, 51, 228))),
+                      color: Color.fromARGB(255, 124, 79, 47))),
             ],
           ),
         ),
@@ -130,7 +133,7 @@ class _ProfileFrom extends StatelessWidget {
                 profile.userDAO.fullName != "" ? profile.userDAO.fullName : "",
             keyboardType: TextInputType.text,
             decoration: InputDecorations.authInputDecorations(
-                labelText: 'Full name', prefixIcon: Icons.person_pin),
+                labelText: 'Nombre Completo', prefixIcon: Icons.person_pin),
             onChanged: (value) => profile.userDAO.fullName = value,
           ),
           const SizedBox(
@@ -159,7 +162,7 @@ class _ProfileFrom extends StatelessWidget {
             keyboardType: TextInputType.phone,
             decoration: InputDecorations.authInputDecorations(
                 // hintText: '******',
-                labelText: 'Number phone',
+                labelText: 'Número de Teléfono',
                 prefixIcon: Icons.phone),
             onChanged: (value) => profile.userDAO.phone = value,
           ),
@@ -167,7 +170,7 @@ class _ProfileFrom extends StatelessWidget {
             height: 30,
           ),
           RoundedLoadingButton(
-            color: Color.fromARGB(255, 185, 0, 121),
+            color: Color.fromARGB(255, 168, 89, 36),
             borderRadius: 10,
             controller: btnController,
             errorColor: Colors.red,
@@ -192,16 +195,24 @@ class _ProfileFrom extends StatelessWidget {
                     btnController.reset();
                     profile.isLoading = false;
                   },
-            child: const Text('Save'),
+            child: const Text('Guardar'),
           ),
-          IconButton(
-              onPressed: () async {
-                await authProvider.signOut().then((value) {
-                  Preference.user = "";
-                  Navigator.pushReplacementNamed(context, '/login');
-                });
-              },
-              icon: const Icon(Icons.logout))
+          const SizedBox(
+            height: 15,
+          ),
+          RoundedLoadingButton(
+            color: Color.fromARGB(255, 168, 89, 36),
+            borderRadius: 10,
+            controller: btnController,
+            errorColor: Colors.red,
+            onPressed: () async {
+              await authProvider.signOut().then((value) {
+                Preference.user = "";
+                Navigator.pushReplacementNamed(context, '/login');
+              });
+            },
+            child: const Text('Cerrar Sesión'),
+          ),
         ],
       ),
     );

@@ -20,41 +20,51 @@ class ThemeScreen extends StatelessWidget {
               Preference.theme = 'temaDia';
               tema.setthemeData(temaDia());
             },
-            icon: const Icon(Icons.sunny, color: Colors.white),
+            icon: const Icon(Icons.sunny, color: Colors.grey, size: 50),
             label: const Text('Tema de Día',
-                style: TextStyle(color: Colors.white)),
+                style: TextStyle(color: Colors.grey, fontSize: 22)),
           ),
           TextButton.icon(
             onPressed: () {
               Preference.theme = 'temaNoche';
               tema.setthemeData(temaNoche());
             },
-            icon: const Icon(Icons.mode_night_outlined, color: Colors.black),
+            icon: const Icon(
+              Icons.mode_night_outlined,
+              color: Colors.black,
+              size: 50,
+            ),
             label: const Text('Tema de Noche',
-                style: TextStyle(color: Colors.black)),
+                style: TextStyle(color: Colors.black, fontSize: 22)),
           ),
           TextButton.icon(
             onPressed: () {
-              Preference.theme = 'temaAzul';
-              tema.setthemeData(temaAzul());
-            },
-            icon: const Icon(Icons.water, color: Colors.blue),
-            label: Text('Tema Azul',
-                style: TextStyle(color: Colors.blue.shade400)),
-          ),
-          TextButton.icon(
-            onPressed: () {
-              Preference.theme = 'temaVerde';
-              tema.setthemeData(temaVerde());
-              print('verde');
+              Preference.theme = 'temaCapucchino';
+              tema.setthemeData(temaCapucchino());
             },
             icon: const Icon(
-              Icons.wb_twilight_sharp,
-              color: Colors.green,
+              Icons.coffee,
+              color: Color.fromARGB(255, 239, 182, 135),
+              size: 50,
+            ),
+            label: const Text('Tema Capucchino',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 216, 184, 147), fontSize: 22)),
+          ),
+          TextButton.icon(
+            onPressed: () {
+              Preference.theme = 'temaExpresso';
+              tema.setthemeData(temaExpresso());
+              print('Expresso');
+            },
+            icon: const Icon(
+              Icons.coffee_maker,
+              color: Colors.brown,
+              size: 50,
             ),
             label: Text(
-              'Tema Verde',
-              style: TextStyle(color: Colors.green.shade400),
+              'Tema Expresso',
+              style: TextStyle(color: Colors.brown.shade400, fontSize: 22),
             ),
           ),
         ],

@@ -30,12 +30,13 @@ class ComprasScreen extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: Colors.brown,
+                          color: Color.fromARGB(255, 239, 182, 135),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: ListTile(
                           leading: const Icon(Icons.shopping_cart,
-                              size: 45, color: Colors.amber),
+                              size: 45,
+                              color: Color.fromARGB(255, 255, 255, 255)),
                           title: Text(
                               "Fecha de compra: ${compraProvider.compras[i].fecha}"),
                           subtitle: Text(

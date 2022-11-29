@@ -8,27 +8,7 @@ class AuthBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [const _Background(), const _HeaderIcon(), child],
-    );
-  }
-}
-
-class _HeaderIcon extends StatelessWidget {
-  const _HeaderIcon({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const SafeArea(
-      child: SizedBox(
-        width: double.infinity,
-        child: Icon(
-          Icons.person_pin,
-          color: Colors.white,
-          size: 100,
-        ),
-      ),
+      children: [const _Background(), child],
     );
   }
 }
@@ -42,8 +22,8 @@ class _Background extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: Image(
-        image: AssetImage('assets/background.jpg'),
-        fit: BoxFit.fill,
+        image: AssetImage('assets/background1.webp'),
+        fit: BoxFit.cover,
       ),
     );
   }

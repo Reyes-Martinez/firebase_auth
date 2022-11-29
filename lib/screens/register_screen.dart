@@ -19,7 +19,7 @@ class RegisterScreen extends StatelessWidget {
         const SizedBox(height: 180),
         CardContainer(
             child: Column(children: [
-          Text('Register', style: Theme.of(context).textTheme.headline4),
+          Text('Registro', style: Theme.of(context).textTheme.headline4),
           ChangeNotifierProvider(
               create: (_) => LoginFormProvider(), child: const _RegisterForm())
         ])),
@@ -94,7 +94,7 @@ class _RegisterFormState extends State<_RegisterForm> {
             height: 30,
           ),
           RoundedLoadingButton(
-            color: Color.fromARGB(255, 185, 0, 121),
+            color: Color.fromARGB(255, 168, 89, 36),
             borderRadius: 10,
             controller: btnController,
             errorColor: Colors.red,
@@ -121,7 +121,7 @@ class _RegisterFormState extends State<_RegisterForm> {
                   },
             child: const Text('crear'),
           ),
-          const Divider(color: Color.fromARGB(255, 185, 0, 121)),
+          const Divider(color: Color.fromARGB(255, 168, 89, 36)),
           const SizedBox(
             height: 5,
           ),

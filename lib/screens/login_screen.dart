@@ -25,18 +25,15 @@ class LoginScreen extends StatelessWidget {
         body: AuthBackground(
             child: SingleChildScrollView(
       child: Column(children: [
-        const SizedBox(height: 180),
+        const SizedBox(height: 70),
         CardContainer(
             child: Column(children: [
-          Text('Login', style: Theme.of(context).textTheme.headline4),
+          Image.asset("assets/Logotipo.png"),
+          Text('Bienvenido', style: Theme.of(context).textTheme.headline4),
           const _LoginForm(),
         ])),
         const SizedBox(
           height: 10,
-        ),
-        const Text(
-          'Crear cuenta',
-          style: TextStyle(fontSize: 20, color: Colors.brown),
         ),
         const SizedBox(
           height: 10,
@@ -49,7 +46,7 @@ class LoginScreen extends StatelessWidget {
               borderRadius: 50,
               mode: SocialLoginButtonMode.single,
               buttonType: SocialLoginButtonType.generalLogin,
-              text: 'Sing Up',
+              text: 'Registrarse',
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -63,17 +60,21 @@ class LoginScreen extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
         const Text(
-          'O puede iniciar sesion con:',
-          style: TextStyle(fontSize: 20, color: Colors.brown),
+          'O iniciar sesión con:',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            backgroundColor: Color.fromARGB(255, 93, 76, 68),
+          ),
         ),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -142,7 +143,7 @@ class _LoginForm extends StatelessWidget {
               RegExp regExp = RegExp(pattern);
               return regExp.hasMatch(value ?? '')
                   ? null
-                  : "El valor ingresado noluce com un correo";
+                  : "El valor ingresado no luce como un correo";
             },
           ),
           const SizedBox(
@@ -165,7 +166,7 @@ class _LoginForm extends StatelessWidget {
             height: 30,
           ),
           RoundedLoadingButton(
-            color: Color.fromARGB(255, 185, 0, 121),
+            color: Color.fromARGB(255, 168, 89, 36),
             borderRadius: 10,
             controller: btnController,
             errorColor: Colors.red,
@@ -195,16 +196,16 @@ class _LoginForm extends StatelessWidget {
                   },
             child: const Text('Ingresar'),
           ),
-          const Divider(color: Color.fromARGB(255, 185, 0, 121)),
+          const Divider(color: Color.fromARGB(255, 168, 89, 36)),
           SwitchListTile.adaptive(
               value: loginForm.recordar,
-              activeColor: Color.fromARGB(255, 255, 111, 231),
+              activeColor: Color.fromARGB(255, 168, 89, 36),
               onChanged: (value) {
                 loginForm.recordar = value;
               },
               title: const Text(
                 'Recordar credenciales',
-                style: TextStyle(color: Colors.black, fontSize: 12),
+                style: TextStyle(color: Colors.black, fontSize: 14),
               )),
           const SizedBox(
             height: 5,
